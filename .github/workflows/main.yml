@@ -55,12 +55,12 @@ jobs:
             ls -la
             cat <<EOF > upload_spec.json 
             {
-            \"files\": [
+            "files": \[
               {
-                \"pattern\": \"${APP_NAME}.tar.gz\",
-                \"target\": \"dtfni-dt2-trunk-local/${APP_NAME}/${VERSION}/\"
+                "pattern": "${APP_NAME}.tar.gz",
+                "target": "dtfni-dt2-trunk-local/${APP_NAME}/${VERSION}/"
               }
-                      ]
+                      \]
             }
             EOF
             aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/${APP_NAME}/${VERSION}  --exclude "*" --include "*.tar.gz" --delete
