@@ -40,6 +40,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Build React App
-        run: npm install && npm run build
+        run: |
+            apt-get install jq -y 
+            APP_NAME = `cat package.json | jq -r .name`
+            VERSION  =  `cat package.json | jq -r .version`
+            npm install && npm run build && tar -czvf ${APP_NAME}.tar.gz build package.json
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+        run: aws s3 sync ./build/${APP_NAME}.tar.gz s3://${{ secrets.AWS_S3_BUCKET }} --delete
