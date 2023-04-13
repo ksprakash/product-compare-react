@@ -55,5 +55,5 @@ jobs:
             ls -la
             
             aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/${APP_NAME}/${VERSION}  --exclude "*" --include "*.tar.gz" --delete
-            jf rt u "./(*.tar.gz)"  dtfni-dt2-trunk-local/${APP_NAME}/${VERSION}/{1}
+            jf rt u "./(*.tar.gz)"  dtfni-dt2-trunk-local/${APP_NAME}/{1}
             
