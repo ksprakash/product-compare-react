@@ -39,18 +39,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Setup JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v2
+      - name: Setup Jfrog Artifactory
+        uses: jfrog/setup-jfrog-cli@v3
         env:
-          JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
-      - name: Run JFrog CLI
-        run: |
-          # Collect environment variables for the build
-          jf rt bce
-          # Collect VCS details from git and add them to the build
-          jf rt bag
-          # Publish build info
-          jf rt bp
+          JF_URL: https://artifactory.coxautoinc.com/
+          JF_USER: '${{ secrets.ARTIFACTORY_USER }}'
+          JF_PASSWORD: '${{ secrets.ARTIFACTORY_TOKEN }}'
       - name: Build React App
         id: record-name-and-version-id
         run: |
