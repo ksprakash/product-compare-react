@@ -45,5 +45,5 @@ jobs:
             sudo apt-get install jq -y 
             APP_NAME=`cat package.json | jq -r .name`
             VERSION=`cat package.json | jq -r .version`
-            npm install && npm run build && tar -czvf $APP_NAME.tar.gz build package.json
-            aws s3 sync $APP_NAME.tar.gz s3://${{ secrets.AWS_S3_BUCKET }}/$VERSION --delete
+            npm install && npm run build && tar -czvf ${APP_NAME}.tar.gz build package.json
+            aws s3 sync ${APP_NAME}.tar.gz s3://${{ secrets.AWS_S3_BUCKET }}/${VERSION} --delete
