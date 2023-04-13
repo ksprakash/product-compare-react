@@ -52,7 +52,7 @@ jobs:
           # Publish build info
           jf rt bp
       - name: Build React App
-        id: record-name-and-version
+        id: record-name-and-version-id
         run: |
             sudo apt-get install jq -y 
             APP_NAME=`cat package.json | jq -r .name`
