@@ -54,4 +54,4 @@ jobs:
             npm install && npm run build && tar -czvf ${APP_NAME}.tar.gz build package.json
             ls -la
             aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/${APP_NAME}/${VERSION}  --exclude "*" --include "*.tar.gz" --delete
-            jf rt u "${APP_NAME}.tar.gz" dtfni-dt2-trunk-local/${APP_NAME}/${VERSION}/${APP_NAME}.tar.gz
+            jf rt u "**/*.tar.gz" dtfni-dt2-trunk-local/${APP_NAME}/${VERSION}  --ant 
