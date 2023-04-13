@@ -53,11 +53,11 @@ jobs:
             VERSION=`cat package.json | jq -r .version`
             npm install && npm run build && tar -czvf ${APP_NAME}.tar.gz build package.json
             ls -la
-            cat <<EOF > upload_spec.json 
+            cat << EOF > upload_spec.json 
             {
             "files": \[
               {
-                "pattern": "${APP_NAME}.tar.gz",
+                "pattern": \"${APP_NAME}.tar.gz",
                 "target": "dtfni-dt2-trunk-local/${APP_NAME}/${VERSION}/"
               }
                       \]
